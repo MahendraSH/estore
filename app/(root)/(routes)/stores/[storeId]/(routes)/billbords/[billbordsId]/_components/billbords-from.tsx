@@ -33,6 +33,7 @@ import { useParams, useRouter } from "next/navigation";
 import DeleteModel from "@/components/models/delete-model";
 import ApiAlert from "@/components/ui/api-alert";
 import { useOrigin } from "@/hooks/use-origin";
+import ImageUpload from "@/components/ui/image-upload";
 
 const formSchema = z.object({
   label: z.string().min(2, {
@@ -159,12 +160,29 @@ const BillbordsFrom: FC<BillbordsFromProps> = ({ intialData }) => {
                   </FormItem>
                 )}
               />
+              <FormField
+                control={form.control}
+                name="imageUrl"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Backgroud Image</FormLabel>
+                    <FormControl>
+                      <ImageUpload
+                        disabled={isLoading}
+                        value={field.value ? [field.value] : []}
+                        onChange={(url: string) => field.onChange(url)}
+                        onRemove={() => field.onChange("")}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
             </div>
             <div className="ml-auto">
-
-            <Button type="submit" disabled={isLoading} className="m-1 " >
-              {actions}
-            </Button>
+              <Button type="submit" disabled={isLoading} className="m-1 ">
+                {actions}
+              </Button>
             </div>
           </form>
         </Form>

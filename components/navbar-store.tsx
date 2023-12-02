@@ -25,9 +25,11 @@ const NavbarStore: FC<NavbarStoreProps> = async ({}) => {
 
   return (
     <>
-      <div className=" navbar z-40 fixed top-0  bg-background shadow shadow-secondary ">
+      <div className=" navbar z-40 fixed top-0  bg-background shadow shadow-secondary m-0 p-0 ">
         <div className="mr-auto pr-4  space-x-2 ">
-          <Logo isStore={true} sidebar={false} />
+          <span className="hidden md:block">
+            <Logo isStore={true} sidebar={false} />
+          </span>
           <div>
             <StoreSwitcher items={stores} />
           </div>

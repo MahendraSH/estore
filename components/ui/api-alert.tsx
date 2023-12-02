@@ -16,7 +16,7 @@ interface ApiAlertProps {
 const ApiAlert: FC<ApiAlertProps> = ({ title, description, variant }) => {
   return (
     <>
-      <Alert>
+      <Alert className=" md:overflow-hidden overflow-y-scroll">
         <ServerIcon className="h-4 w-4 mr-2" />
 
         <AlertTitle className="gap-x-4 flex  items-center  text-sm">
@@ -25,12 +25,23 @@ const ApiAlert: FC<ApiAlertProps> = ({ title, description, variant }) => {
             {variant === "public" && "public"}
             {variant === "admin" && "private"}
           </Badge>
+          <Button
+            variant={"ghost"}
+            size={"icon"}
+            className=" md:hidden"
+            onClick={() => {
+              navigator.clipboard.writeText(description);
+              toast.success("API Route copied to clipboard.");
+            }}
+          >
+            <CopyIcon className="h-4 w-4 " />
+          </Button>
         </AlertTitle>
-        <AlertDescription className="flex mt-2 md:overflow-hidden overflow-x-scroll  ">
-          <code className="relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold">
+        <AlertDescription className="flex mt-2   ">
+          <code className=" rounded bg-muted px-1 py-2 font-mono text-sm font-semibold flex-1">
             {description}
           </code>{" "}
-          <span className="ml-auto ">
+          <span className=" ml-auto text-secondary-foreground hidden md:flex">
             <Button
               variant={"ghost"}
               size={"icon"}
@@ -39,7 +50,7 @@ const ApiAlert: FC<ApiAlertProps> = ({ title, description, variant }) => {
                 toast.success("API Route copied to clipboard.");
               }}
             >
-              <CopyIcon className="h-4 w-4" />
+              <CopyIcon className="h-4 w-4 " />
             </Button>
           </span>
         </AlertDescription>

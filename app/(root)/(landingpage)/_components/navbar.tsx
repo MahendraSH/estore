@@ -21,9 +21,9 @@ const Navbar: FC<NavbarProps> = ({ isAuth }) => {
     <>
       <div
         className={cn(
-          "navbar z-40 fixed top-0  bg-background   ",
+          "navbar z-40 fixed top-0  bg-background  p-0 m-0  ",
           scrolled &&
-            " border-b shadow w shadow-slate-800  dark:shadow-gray-300"
+            " border-b shadow-secondary shadow-lg"
         )}
       >
         <div className=" sm:justify-end md:justify-start  flex-1">
