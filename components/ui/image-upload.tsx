@@ -41,10 +41,11 @@ const ImageUpload: FC<ImageUploadProps> = ({
       <div className="md-4 flex items-center gap-4 flex-row  ">
         {value.map((url) => (
           <div
-            className=" aspect-square w-40 h-32  rounded-md overflow-hidden "
+            className="relative  aspect-square w-40 h-32  rounded-md overflow-hidden "
             key={url}
           >
-            <div className=" absolute z-10 top2 right-2 ">
+          
+            <div className="  absolute right-2 top-1  ">
               <Button
                 onClick={() => onRemove(url)}
                 variant={"destructive"}

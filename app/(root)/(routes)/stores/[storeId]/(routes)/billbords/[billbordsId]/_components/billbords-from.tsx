@@ -1,7 +1,7 @@
 "use client";
 
 import * as z from "zod";
-import { Billboard, Store } from "@prisma/client";
+import { Billboard } from "@prisma/client";
 import { FC, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -10,7 +10,6 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -18,17 +17,10 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import Heading from "@/components/ui/heading";
-import {
-  EditIcon,
-  NewspaperIcon,
-  PlusIcon,
-  PlusSquare,
-  SettingsIcon,
-  TrashIcon,
-} from "lucide-react";
+import { EditIcon, PlusSquare, TrashIcon } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import toast from "react-hot-toast";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import { useParams, useRouter } from "next/navigation";
 import DeleteModel from "@/components/models/delete-model";
 import ApiAlert from "@/components/ui/api-alert";
@@ -57,8 +49,8 @@ const BillbordsFrom: FC<BillbordsFromProps> = ({ intialData }) => {
   const description = intialData ? "Edit  a billbord" : "Add a new billbord";
   const Icon = intialData ? EditIcon : PlusSquare;
   const toastSuccessMessage = intialData
-    ? "billbord created"
-    : "billbord deleted ";
+    ? "billbord updated"
+    : "billbord created ";
   const actions = intialData ? "Save changes" : "Create";
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -72,18 +64,19 @@ const BillbordsFrom: FC<BillbordsFromProps> = ({ intialData }) => {
     try {
       setIsLoading(true);
       if (intialData) {
-        const res = await axios.patch(
+        await axios.patch(
           `/api/stores/${params.storeId}/billbords/${params.billbordsId}`,
           values
         );
       } else {
         const res = await axios.post(
-          `/api/stores/${params.storeId}/billbords}`,
+          `/api/stores/${params.storeId}/billbords`,
           values
         );
+        router.push(`/stores/${params.storeId}/billbords/${res?.data.id}`);
       }
-      toast.success(toastSuccessMessage);
       router.refresh();
+      toast.success(toastSuccessMessage);
     } catch (error) {
       toast.error("something when wrong ");
       console.log("billbord update", error);
@@ -95,7 +88,7 @@ const BillbordsFrom: FC<BillbordsFromProps> = ({ intialData }) => {
   const onDeleteConfrom = async () => {
     try {
       setIsLoading(true);
-      const res = await axios.delete(
+      await axios.delete(
         `/api/stores/${params.storeId}/billbords/${params.billbordsId}`
       );
       router.refresh();

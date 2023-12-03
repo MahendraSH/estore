@@ -9,7 +9,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { MenuIcon, MoreHorizontalIcon } from "lucide-react";
+import { MenuIcon, MoreHorizontalIcon, Sidebar } from "lucide-react";
 import Logo from "./logo";
 import StoreNavLink from "./store-nav-link";
 import { Button } from "./ui/button";
@@ -22,7 +22,7 @@ const StoreSidebar: FC<StoreSidebarProps> = ({}) => {
     <>
       <Sheet open={isOpen} onOpenChange={() => setIsOpen(false)}>
         <Button variant={"ghost"} size={"icon"} onClick={() => setIsOpen(true)}>
-          <MoreHorizontalIcon className=" h-6 w-6 my-auto  " />
+          <Sidebar className=" h-6 w-6 my-auto  " />
         </Button>
         <SheetContent className=" w-[90%]" side={"left"}>
           <SheetHeader className="w-full">

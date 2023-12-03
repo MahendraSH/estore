@@ -2,12 +2,10 @@ import prismadb from "@/lib/prismaDB";
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 
-interface GETProps {
-  req: Request;
-  params: { storeId: string; billbordsId: string };
-}
-
-export const GET = async ({ req, params }: GETProps) => {
+export const GET = async (
+  req: Request,
+  { params }: { params: { storeId: string; billbordsId: string } }
+) => {
   try {
     const { userId } = auth();
     if (!userId) {
@@ -32,12 +30,11 @@ export const GET = async ({ req, params }: GETProps) => {
     return new NextResponse(" Internal server error ", { status: 500 });
   }
 };
-interface DELETEProps {
-  req: Request;
-  params: { storeId: string; billbordsId: string };
-}
 
-export const DELETE = async ({ req, params }: DELETEProps) => {
+export const DELETE = async (
+  req: Request,
+  { params }: { params: { storeId: string; billbordsId: string } }
+) => {
   try {
     const { userId } = auth();
     if (!userId) {
@@ -72,12 +69,10 @@ export const DELETE = async ({ req, params }: DELETEProps) => {
   }
 };
 
-interface PATCHProps {
-  req: Request;
-  params: { storeId: string; billbordsId: string };
-}
-
-export const PATCH = async ({ req, params }: PATCHProps) => {
+export const PATCH = async (
+  req: Request,
+  { params }: { params: { storeId: string; billbordsId: string } }
+) => {
   try {
     const { userId } = auth();
     if (!userId) {
