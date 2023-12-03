@@ -9,6 +9,7 @@ import StoreSwitcher from "./store-switcher";
 import prismadb from "@/lib/prismaDB";
 import { redirect } from "next/navigation";
 
+
 interface NavbarStoreProps {}
 
 const NavbarStore: FC<NavbarStoreProps> = async ({}) => {

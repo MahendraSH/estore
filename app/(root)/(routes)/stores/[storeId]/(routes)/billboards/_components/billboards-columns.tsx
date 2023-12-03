@@ -43,6 +43,7 @@ export const columns: ColumnDef<Billboard>[] = [
   },
   {
     id: "actions",
+    header: "Actions",
     cell: ({ row }) => {
       return <RowActions id={row.original.id} storeId={row.original.storeId} />;
     },
