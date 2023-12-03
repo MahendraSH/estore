@@ -3,15 +3,16 @@ import { Button } from "@/components/ui/button";
 import { DataTable } from "@/components/ui/data-table";
 import Heading from "@/components/ui/heading";
 import { Separator } from "@/components/ui/separator";
-import { Category } from "@prisma/client";
+import { Billboard, Category } from "@prisma/client";
 import { DatabaseIcon, PlusIcon, Square } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
 import { FC } from "react";
-import { columns } from "./categories-columns";
 import ApiList from "@/components/ui/api-list";
+import { columns } from "./categories-columns";
 
 interface CategoryClientProps {
-  categories: Category[] | [];
+ categories: (Category & { billboard: Billboard })[] | [];
+ 
 }
 
 const CategoryClient: FC<CategoryClientProps> = ({ categories }) => {
