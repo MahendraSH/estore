@@ -42,40 +42,40 @@ model Category {
   id          String      @id @default(uuid())
   storeId     String      // Foreign Key to Store
   store       Store       @relation("StoreToCategory", fields: [storeId], references: [id])
-  billboardId String      // Foreign Key to Billboard
-  billboard   Billboard   @relation(fields: [billboardId], references: [id])
+  billboardsId String      // Foreign Key to Billboard
+  billboard   Billboard   @relation(fields: [billboardsId], references: [id])
   name        String
   products    Product[]   @relation("CategoryToProduct")
   createdAt   DateTime    @default(now())
   updatedAt   DateTime    @updatedAt
 
   @@index([storeId])
-  @@index([billboardId])
+  @@index([billboardsId])
 }
 
 model Product {
   id          String    @id @default(uuid())
   storeId     String    // Foreign Key to Store
   store       Store     @relation("StoreToProduct", fields: [storeId], references: [id])
-  categoryId  String    // Foreign Key to Category
-  category    Category  @relation("CategoryToProduct", fields: [categoryId], references: [id])
+  categoriesId  String    // Foreign Key to Category
+  category    Category  @relation("CategoryToProduct", fields: [categoriesId], references: [id])
   name        String
   price       Decimal
   isFeatured  Boolean   @default(false)
   isArchived  Boolean   @default(false)
-  sizeId      String    // Foreign Key to Size
-  size        Size      @relation(fields: [sizeId], references: [id])
-  colorId     String    // Foreign Key to Color
-  color       Color     @relation(fields: [colorId], references: [id])
+  sizesId      String    // Foreign Key to Size
+  size        Size      @relation(fields: [sizesId], references: [id])
+  colorsId     String    // Foreign Key to Color
+  color       Color     @relation(fields: [colorsId], references: [id])
   images      Image[]   // Relation to Image model
   orderItems  OrderItem[]   // Relation to Order model
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 
   @@index([storeId])
-  @@index([categoryId])
-  @@index([sizeId])
-  @@index([colorId])
+  @@index([categoriesId])
+  @@index([sizesId])
+  @@index([colorsId])
 }
 
 model Order {

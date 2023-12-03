@@ -1,37 +1,34 @@
 "use client";
 
-import { Billboard } from "@prisma/client";
+import { Billboard, Category } from "@prisma/client";
 import { ColumnDef } from "@tanstack/react-table";
 import moment from "moment";
-import RowActions from "./billboards-row-actions";
+import RowActions from "./categories-row-actions";
 import Image from "next/image";
-interface Column {
-  label: string;
-  id: string;
-  createdAt: Date;
-}
 
-export const columns: ColumnDef<Billboard>[] = [
+export const columns: ColumnDef<Category & { billboard: Billboard }>[] = [
   {
-    accessorKey: "label",
-    header: "Label",
+    accessorKey: "name",
+    header: "Name",
   },
 
   {
-    accessorKey: "imageUrl",
-    header: "Image ",
+    accessorKey: "billboard",
+    header: "Billboard ",
     cell: ({ row }) => (
-      <div className=" border border-primary  w-10 h-10 rounded-lg flex justify-center items-center ">
+      <div className=" flex   justify-start items-center w-full">
         <Image
-          src={row.getValue("imageUrl")}
-          width={35}
-          height={35}
-          alt="image"
-          className=" w-8 h-8  rounded-md "
+          src={row.original.billboard.imageUrl}
+          width={30}
+          height={30}
+          alt="billboard"
+          className="w-5 h-5 rounded-md mr-2 block  "
         />
+        {row.original.billboard.label}
       </div>
     ),
   },
+
   {
     accessorKey: "createdAt",
     header: "CreatedAt ",
