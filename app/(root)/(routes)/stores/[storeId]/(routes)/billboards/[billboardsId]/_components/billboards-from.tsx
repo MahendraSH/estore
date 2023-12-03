@@ -20,10 +20,9 @@ import Heading from "@/components/ui/heading";
 import { EditIcon, PlusSquare, TrashIcon } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import toast from "react-hot-toast";
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
 import DeleteModel from "@/components/models/delete-model";
-import ApiAlert from "@/components/ui/api-alert";
 import { useOrigin } from "@/hooks/use-origin";
 import ImageUpload from "@/components/ui/image-upload";
 
@@ -34,23 +33,23 @@ const formSchema = z.object({
   imageUrl: z.string().min(1),
 });
 
-interface BillbordsFromProps {
+interface BillboardsFromProps {
   intialData: Billboard | null;
 }
 
-const BillbordsFrom: FC<BillbordsFromProps> = ({ intialData }) => {
+const BillboardsFrom: FC<BillboardsFromProps> = ({ intialData }) => {
   const params = useParams();
   const router = useRouter();
   const url = useOrigin();
   const [isLoading, setIsLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
-  const title = intialData ? "Edit Billbord" : "Create Billbord";
-  const description = intialData ? "Edit  a billbord" : "Add a new billbord";
+  const title = intialData ? "Edit Billboard" : "Create Billboard";
+  const description = intialData ? "Edit  a billboard" : "Add a new billboard";
   const Icon = intialData ? EditIcon : PlusSquare;
   const toastSuccessMessage = intialData
-    ? "billbord updated"
-    : "billbord created ";
+    ? "billboard updated"
+    : "billboard created ";
   const actions = intialData ? "Save changes" : "Create";
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -65,21 +64,21 @@ const BillbordsFrom: FC<BillbordsFromProps> = ({ intialData }) => {
       setIsLoading(true);
       if (intialData) {
         await axios.patch(
-          `/api/stores/${params.storeId}/billbords/${params.billbordsId}`,
+          `/api/stores/${params.storeId}/billboards/${params.billboardsId}`,
           values
         );
       } else {
         const res = await axios.post(
-          `/api/stores/${params.storeId}/billbords`,
+          `/api/stores/${params.storeId}/billboards`,
           values
         );
-        router.push(`/stores/${params.storeId}/billbords/${res?.data.id}`);
+        router.push(`/stores/${params.storeId}/billboards/${res?.data.id}`);
       }
       router.refresh();
       toast.success(toastSuccessMessage);
     } catch (error) {
       toast.error("something when wrong ");
-      console.log("billbord update", error);
+      console.log("billboard update", error);
     } finally {
       setIsLoading(false);
     }
@@ -89,14 +88,14 @@ const BillbordsFrom: FC<BillbordsFromProps> = ({ intialData }) => {
     try {
       setIsLoading(true);
       await axios.delete(
-        `/api/stores/${params.storeId}/billbords/${params.billbordsId}`
+        `/api/stores/${params.storeId}/billboards/${params.billboardsId}`
       );
       router.refresh();
-      toast.success("billbord  deleted");
-      router.push(`/stores/${params.storeId}/billbords`);
+      toast.success("billboard  deleted");
+      router.push(`/stores/${params.storeId}/billboards`);
     } catch (error) {
       toast.error("something when wrong ");
-      console.log("billbord delete", error);
+      console.log("billboard delete", error);
     } finally {
       setIsLoading(false);
       setIsOpen(false);
@@ -122,7 +121,7 @@ const BillbordsFrom: FC<BillbordsFromProps> = ({ intialData }) => {
               onClick={() => setIsOpen(true)}
               className="bg-destructive"
             >
-              <TrashIcon className="h-4 w-4 mr-2 " /> Delete Billbord
+              <TrashIcon className="h-4 w-4 mr-2 " /> Delete Billboard
             </Button>
           </div>
         )}
@@ -144,7 +143,7 @@ const BillbordsFrom: FC<BillbordsFromProps> = ({ intialData }) => {
                     <FormLabel>Label</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="billbord name"
+                        placeholder="billboard name"
                         {...field}
                         disabled={isLoading}
                       />
@@ -181,14 +180,8 @@ const BillbordsFrom: FC<BillbordsFromProps> = ({ intialData }) => {
         </Form>
       </>
 
-      <Separator />
-      <ApiAlert
-        title="NEXT_PUBLIC_API_URL"
-        description={`${url}/api/stores/${params.storeId}`}
-        variant="public"
-      />
     </>
   );
 };
 
-export default BillbordsFrom;
+export default BillboardsFrom;

@@ -1,13 +1,13 @@
 import { FC } from "react";
-import BillbordClient from "./_components/billbord-client";
+import BillboardClient from "./_components/billboard-client";
 import prismadb from "@/lib/prismaDB";
 
-interface BillbordsPageProps {
+interface BillboardsPageProps {
   params: { storeId: string };
 }
 
-const BillbordsPage: FC<BillbordsPageProps> = async ({ params }) => {
-  const billbords = await prismadb.billboard.findMany({
+const BillboardsPage: FC<BillboardsPageProps> = async ({ params }) => {
+  const billboards = await prismadb.billboard.findMany({
     where: {
       storeId: params.storeId,
     },
@@ -19,10 +19,10 @@ const BillbordsPage: FC<BillbordsPageProps> = async ({ params }) => {
   return (
     <div className="flex flex-col  ">
       <div className=" flex-1 space-y-4 p-8 pt-6 ">
-        <BillbordClient billbords={billbords} />
+        <BillboardClient billboards={billboards} />
       </div>
     </div>
   );
 };
 
-export default BillbordsPage;
+export default BillboardsPage;

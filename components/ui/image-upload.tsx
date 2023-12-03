@@ -44,7 +44,6 @@ const ImageUpload: FC<ImageUploadProps> = ({
             className="relative  aspect-square w-40 h-32  rounded-md overflow-hidden "
             key={url}
           >
-          
             <div className="  absolute right-2 top-1  ">
               <Button
                 onClick={() => onRemove(url)}
@@ -56,7 +55,7 @@ const ImageUpload: FC<ImageUploadProps> = ({
             </div>
             <Image
               src={url}
-              alt="billbord image"
+              alt="billboard image"
               width={500}
               height={400}
               className="aspect-square w-40 h-32 "

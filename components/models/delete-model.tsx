@@ -37,7 +37,7 @@ const DeleteModel: FC<DeleteModelProps> = ({
         <Button disabled={loading} variant="outline" onClick={onClose}>
           Cancel
         </Button>
-        <Button disabled={loading} variant="ghost" onClick={onDelelete}>
+        <Button disabled={loading}  onClick={onDelelete}>
           Continue
         </Button>
       </div>

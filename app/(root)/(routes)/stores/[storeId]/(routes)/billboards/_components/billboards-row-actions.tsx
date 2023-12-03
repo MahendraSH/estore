@@ -29,13 +29,13 @@ const RowActions: FC<RowActionsProps> = ({ id, storeId }) => {
   const onDeleteConfrom = async () => {
     try {
       setIsLoading(true);
-      await axios.delete(`/api/stores/${storeId}/billbords/${id}`);
+      await axios.delete(`/api/stores/${storeId}/billboards/${id}`);
       router.refresh();
-      toast.success("billbord  deleted");
-      router.push(`/stores/${storeId}/billbords`);
+      toast.success("billboard  deleted");
+      router.push(`/stores/${storeId}/billboards`);
     } catch (error) {
       toast.error("something when wrong ");
-      console.log("billbord delete", error);
+      console.log("billboard delete", error);
     } finally {
       setIsLoading(false);
       setIsOpen(false);
@@ -70,7 +70,7 @@ const RowActions: FC<RowActionsProps> = ({ id, storeId }) => {
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem
-            onClick={() => router.push(`/stores/${storeId}/billbords/${id}`)}
+            onClick={() => router.push(`/stores/${storeId}/billboards/${id}`)}
           >
             <EditIcon className="w-4 h-4 mr-2" /> Edit
           </DropdownMenuItem>

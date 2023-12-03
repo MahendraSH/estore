@@ -53,30 +53,26 @@ export async function POST(
     console.log("[BILLBOARDS_POST]", error);
     return new NextResponse("Internal error", { status: 500 });
   }
-};
-
+}
 
 export const GET = async (
   req: Request,
   { params }: { params: { storeId: string } }
 ) => {
   try {
-    const { userId } = auth();
-    if (!userId) {
-      return new NextResponse("Unauthenticated", { status: 403 });
-    }
+    
     if (!params.storeId) {
       return new NextResponse("storeId  is required ", { status: 400 });
     }
 
-    const billborda = await prismadb.billboard.findMany({
+    const billboarda = await prismadb.billboard.findMany({
       where: {
         storeId: params.storeId,
       },
     });
-    return NextResponse.json(billborda);
+    return NextResponse.json(billboarda);
   } catch (error) {
-    console.log(" GET_BILLBORD ", error);
+    console.log(" GET_Billboard ", error);
     return new NextResponse(" Internal server error ", { status: 500 });
   }
 };

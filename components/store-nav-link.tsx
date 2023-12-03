@@ -6,7 +6,16 @@ import { Button } from "./ui/button";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { DashboardIcon, SizeIcon } from "@radix-ui/react-icons";
-import { Package, PackageIcon, Palette, SettingsIcon, ShoppingBagIcon, SquareAsterisk, SquareIcon, SquareStackIcon } from "lucide-react";
+import {
+  Package,
+  PackageIcon,
+  Palette,
+  SettingsIcon,
+  ShoppingBagIcon,
+  SquareAsterisk,
+  SquareIcon,
+  SquareStackIcon,
+} from "lucide-react";
 
 interface StoreNavLinkProps {
   sidebar: boolean;
@@ -25,34 +34,34 @@ const StoreNavLink: FC<StoreNavLinkProps> = ({ sidebar, onClose }) => {
       Icon: DashboardIcon,
     },
     {
-      label: "billbords",
-      href: `/stores/${params.storeId}/billbords`,
-      active: pathname === `/stores/${params.storeId}/billbords`,
+      label: "billboards",
+      href: `/stores/${params.storeId}/billboards`,
+      active: pathname.includes(`/stores/${params.storeId}/billboards`),
       Icon: SquareIcon,
     },
     {
       label: "categories",
       href: `/stores/${params.storeId}/categories`,
-      active: pathname === `/stores/${params.storeId}/categories`,
+      active: pathname.includes(`/stores/${params.storeId}/categories`),
       Icon: SquareStackIcon,
     },
     {
       label: "colors",
       href: `/stores/${params.storeId}/colors`,
-      active: pathname === `/stores/${params.storeId}/colors`,
+      active: pathname.includes(`/stores/${params.storeId}/colors`),
       Icon: Palette,
     },
     {
       label: "sizes",
       href: `/stores/${params.storeId}/sizes`,
-      active: pathname === `/stores/${params.storeId}/sizes`,
+      active: pathname.includes(`/stores/${params.storeId}/sizes`),
       Icon: SizeIcon,
     },
     {
       label: "products",
       href: `/stores/${params.storeId}/products`,
-      active: pathname === `/stores/${params.storeId}/products`,
-      Icon: PackageIcon
+      active: pathname.includes(`/stores/${params.storeId}/products`),
+      Icon: PackageIcon,
     },
     {
       label: "orders",
@@ -63,7 +72,7 @@ const StoreNavLink: FC<StoreNavLinkProps> = ({ sidebar, onClose }) => {
     {
       label: "settings",
       href: `/stores/${params.storeId}/settings`,
-      active: pathname === `/stores/${params.storeId}/settings`,
+      active: pathname.includes(`/stores/${params.storeId}/settings`),
       Icon: SettingsIcon,
     },
   ];
@@ -80,7 +89,7 @@ const StoreNavLink: FC<StoreNavLinkProps> = ({ sidebar, onClose }) => {
             router.push(item.href);
           }}
         >
-          { sidebar &&  item.Icon && <item.Icon  className="h-4 w-4 mr-2 "/>}
+          {sidebar && item.Icon && <item.Icon className="h-4 w-4 mr-2 " />}
           {item.label}
           {sidebar && (
             <div

@@ -4,31 +4,32 @@ import { DataTable } from "@/components/ui/data-table";
 import Heading from "@/components/ui/heading";
 import { Separator } from "@/components/ui/separator";
 import { Billboard } from "@prisma/client";
-import { PlusIcon, Square } from "lucide-react";
+import { DatabaseIcon, PlusIcon, Square } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
 import { FC } from "react";
-import { columns } from "./columns";
+import { columns } from "./billboards-columns";
+import ApiList from "@/components/ui/api-list";
 
-interface BillbordClientProps {
-  billbords: Billboard[] | [];
+interface BillboardClientProps {
+  billboards: Billboard[] | [];
 }
 
-const BillbordClient: FC<BillbordClientProps> = ({ billbords }) => {
+const BillboardClient: FC<BillboardClientProps> = ({ billboards }) => {
   const router = useRouter();
   const params = useParams();
   return (
     <>
       <div className="flex justify-between items-center ">
         <Heading
-          title={"Billbords (0)"}
-          description={"Manage billbords for your site"}
+          title={`Billboards (${billboards?.length})`}
+          description={"Manage billboards for your site"}
           icon={Square}
         />
 
         <div className="  ">
           <Button
             onClick={() =>
-              router.push(`/stores/${params.storeId}/billbords/new`)
+              router.push(`/stores/${params.storeId}/billboards/new`)
             }
           >
             <PlusIcon className="h-4 w-4 mr-2 " /> Add New
@@ -36,11 +37,16 @@ const BillbordClient: FC<BillbordClientProps> = ({ billbords }) => {
         </div>
       </div>
       <Separator />
-      {billbords?.length > 0 && (
-        <DataTable serKey="label" columns={columns} data={billbords} />
-      )}
+      <DataTable serKey="label" columns={columns} data={billboards} />
+      <Heading
+        title="API"
+        description=" API calls for billboards"
+        icon={DatabaseIcon}
+      />
+      <Separator />
+      <ApiList itemName="billboards" itemId="billboardsId" />
     </>
   );
 };
 
-export default BillbordClient;
+export default BillboardClient;

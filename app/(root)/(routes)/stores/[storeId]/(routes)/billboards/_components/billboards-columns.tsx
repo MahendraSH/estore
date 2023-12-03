@@ -3,7 +3,7 @@
 import { Billboard } from "@prisma/client";
 import { ColumnDef } from "@tanstack/react-table";
 import moment from "moment";
-import RowActions from "./row-actions";
+import RowActions from "./billboards-row-actions";
 import Image from "next/image";
 interface Column {
   label: string;
@@ -21,7 +21,7 @@ export const columns: ColumnDef<Billboard>[] = [
     accessorKey: "imageUrl",
     header: "Image ",
     cell: ({ row }) => (
-      <span>
+      <div className=" border border-primary  w-10 h-10 rounded-lg flex justify-center items-center ">
         <Image
           src={row.getValue("imageUrl")}
           width={35}
@@ -29,7 +29,7 @@ export const columns: ColumnDef<Billboard>[] = [
           alt="image"
           className=" w-8 h-8  rounded-md "
         />
-      </span>
+      </div>
     ),
   },
   {
