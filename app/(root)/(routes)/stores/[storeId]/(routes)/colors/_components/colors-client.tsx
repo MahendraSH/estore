@@ -4,7 +4,7 @@ import { DataTable } from "@/components/ui/data-table";
 import Heading from "@/components/ui/heading";
 import { Separator } from "@/components/ui/separator";
 import { Color } from "@prisma/client";
-import { DatabaseIcon, PlusIcon, Square } from "lucide-react";
+import { DatabaseIcon, PaletteIcon, PlusIcon, Square } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
 import { FC } from "react";
 import { columns } from "./colors-columns";
@@ -23,14 +23,12 @@ const ColorsClient: FC<ColorsClientProps> = ({ colors }) => {
         <Heading
           title={`Colors (${colors?.length})`}
           description={"Manage colors for your site"}
-          icon={Square}
+          icon={PaletteIcon}
         />
 
         <div className="  ">
           <Button
-            onClick={() =>
-              router.push(`/stores/${params.storeId}/colors/new`)
-            }
+            onClick={() => router.push(`/stores/${params.storeId}/colors/new`)}
           >
             <PlusIcon className="h-4 w-4 mr-2 " /> Add New
           </Button>

@@ -4,7 +4,7 @@ import { DataTable } from "@/components/ui/data-table";
 import Heading from "@/components/ui/heading";
 import { Separator } from "@/components/ui/separator";
 import { Billboard, Category } from "@prisma/client";
-import { DatabaseIcon, PlusIcon, Square } from "lucide-react";
+import { DatabaseIcon, PlusIcon, Square, SquareStackIcon } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
 import { FC } from "react";
 import ApiList from "@/components/ui/api-list";
@@ -24,7 +24,7 @@ const CategoryClient: FC<CategoryClientProps> = ({ categories }) => {
         <Heading
           title={`Categories(${categories?.length})`}
           description={"Manage categories for your site"}
-          icon={Square}
+          icon={SquareStackIcon}
         />
 
         <div className="  ">

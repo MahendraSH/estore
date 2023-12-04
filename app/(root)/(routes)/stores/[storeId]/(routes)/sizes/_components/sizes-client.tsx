@@ -9,6 +9,7 @@ import { useParams, useRouter } from "next/navigation";
 import { FC } from "react";
 import { columns } from "./sizes-columns";
 import ApiList from "@/components/ui/api-list";
+import { SizeIcon } from "@radix-ui/react-icons";
 
 interface SizesClientProps {
   sizes: Size[] | [];
@@ -23,7 +24,7 @@ const SizesClient: FC<SizesClientProps> = ({ sizes }) => {
         <Heading
           title={`Sizes (${sizes?.length})`}
           description={"Manage sizes for your site"}
-          icon={Square}
+          icon={SizeIcon}
         />
 
         <div className="  ">
