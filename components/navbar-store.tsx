@@ -26,7 +26,7 @@ const NavbarStore: FC<NavbarStoreProps> = async ({}) => {
 
   return (
     <>
-      <div className=" navbar z-40 fixed top-0  bg-background shadow shadow-secondary m-0 p-0 ">
+      <div className=" navbar z-40 fixed top-0  bg-background shadow-lg shadow-secondary m-0 p-0   ">
         <div className="mr-auto pr-4  space-x-2 ">
           <span className="hidden md:block">
             <Logo isStore={true} sidebar={false} />
@@ -38,7 +38,7 @@ const NavbarStore: FC<NavbarStoreProps> = async ({}) => {
         <div className="px-6  hidden lg:flex  items-center  space-x-4 lg:spae-x-5">
           <StoreNavLink sidebar={false} />
         </div>
-        <div className=" ml-auto flex items-center  space-x-2 md:space-x-4 ">
+        <div className=" ml-auto flex items-center mr-2  md:mr-3 space-x-3 md:space-x-4  ">
           <ClerkLoading>
             <Skeleton className="h-8 w-8  rounded-full" />
           </ClerkLoading>
