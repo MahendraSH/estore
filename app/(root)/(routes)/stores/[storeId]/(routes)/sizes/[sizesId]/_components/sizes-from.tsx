@@ -47,9 +47,7 @@ const SizesFrom: FC<SizesFromProps> = ({ intialData }) => {
   const title = intialData ? "Edit Size" : "Create Size";
   const description = intialData ? "Edit  a size" : "Add a new size";
   const Icon = intialData ? EditIcon : PlusSquare;
-  const toastSuccessMessage = intialData
-    ? "size updated"
-    : "size created ";
+  const toastSuccessMessage = intialData ? "size updated" : "size created ";
   const actions = intialData ? "Save changes" : "Create";
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -72,8 +70,8 @@ const SizesFrom: FC<SizesFromProps> = ({ intialData }) => {
           `/api/stores/${params.storeId}/sizes`,
           values
         );
-        router.push(`/stores/${params.storeId}/sizes/${res?.data.id}`);
       }
+      router.push(`/stores/${params.storeId}/sizes`);
       router.refresh();
       toast.success(toastSuccessMessage);
     } catch (error) {
@@ -93,6 +91,7 @@ const SizesFrom: FC<SizesFromProps> = ({ intialData }) => {
       router.refresh();
       toast.success("size  deleted");
       router.push(`/stores/${params.storeId}/sizes`);
+      router.refresh();
     } catch (error) {
       toast.error("something when wrong ");
       console.log("size delete", error);

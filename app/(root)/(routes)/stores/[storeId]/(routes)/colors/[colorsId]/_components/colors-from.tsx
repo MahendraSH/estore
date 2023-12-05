@@ -70,8 +70,8 @@ const ColorsFrom: FC<ColorsFromProps> = ({ intialData }) => {
           `/api/stores/${params.storeId}/colors`,
           values
         );
-        router.push(`/stores/${params.storeId}/colors/${res?.data.id}`);
       }
+      router.push(`/stores/${params.storeId}/colors`);
       router.refresh();
       toast.success(toastSuccessMessage);
     } catch (error) {
@@ -91,6 +91,7 @@ const ColorsFrom: FC<ColorsFromProps> = ({ intialData }) => {
       router.refresh();
       toast.success("color  deleted");
       router.push(`/stores/${params.storeId}/colors`);
+      router.refresh();
     } catch (error) {
       toast.error("something when wrong ");
       console.log("color delete", error);

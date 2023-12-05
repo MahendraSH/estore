@@ -16,7 +16,7 @@ const Footer: FC<FooterProps> = ({}) => {
   return (
     <>
       <footer
-        className="footer  md:footer-center p-10   rounded  w-full border-t-2 border-secondary
+        className="footer  md:footer-center p-10   rounded  w-full border-t border-secondary
       "
       >
         <nav className="grid md:grid-flow-col gap-0 md:gap-4 ">

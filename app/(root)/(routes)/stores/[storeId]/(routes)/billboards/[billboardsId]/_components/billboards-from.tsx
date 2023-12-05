@@ -72,8 +72,9 @@ const BillboardsFrom: FC<BillboardsFromProps> = ({ intialData }) => {
           `/api/stores/${params.storeId}/billboards`,
           values
         );
-        router.push(`/stores/${params.storeId}/billboards/${res?.data.id}`);
       }
+      router.push(`/stores/${params.storeId}/billboards`);
+      router.refresh();
       router.refresh();
       toast.success(toastSuccessMessage);
     } catch (error) {

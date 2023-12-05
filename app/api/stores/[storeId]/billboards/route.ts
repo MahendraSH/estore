@@ -65,12 +65,12 @@ export const GET = async (
       return new NextResponse("storeId  is required ", { status: 400 });
     }
 
-    const billboarda = await prismadb.billboard.findMany({
+    const billboards = await prismadb.billboard.findMany({
       where: {
         storeId: params.storeId,
       },
     });
-    return NextResponse.json(billboarda);
+    return NextResponse.json(billboards);
   } catch (error) {
     console.log(" GET_Billboard ", error);
     return new NextResponse(" Internal server error ", { status: 500 });

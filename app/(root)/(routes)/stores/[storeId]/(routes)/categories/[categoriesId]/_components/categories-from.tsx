@@ -80,8 +80,8 @@ const CategorysFrom: FC<CategorysFromProps> = ({ intialData, billboards }) => {
           `/api/stores/${params.storeId}/categories`,
           values
         );
-        router.push(`/stores/${params.storeId}/categories/${res?.data.id}`);
       }
+      router.push(`/stores/${params.storeId}/categories`);
       router.refresh();
       toast.success(toastSuccessMessage);
     } catch (error) {
@@ -101,6 +101,7 @@ const CategorysFrom: FC<CategorysFromProps> = ({ intialData, billboards }) => {
       router.refresh();
       toast.success("category  deleted");
       router.push(`/stores/${params.storeId}/categories`);
+      router.refresh();
     } catch (error) {
       toast.error("something when wrong ");
       console.log("category delete", error);

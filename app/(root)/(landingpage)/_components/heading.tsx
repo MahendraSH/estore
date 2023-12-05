@@ -14,9 +14,9 @@ const Heading: FC<HeadingProps> = ({}) => {
   return (
     <>
       <div className="max-w-3xl space-y-4">
-        <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold bg-clip-text text-transparent  bg-gradient-to-tr from-stone-700  via-primary to-secondary-foreground dark:bg-gradient-to-tr dark:from-stone-300  dark:via-primary dark:to-secondary">
+        <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold bg-clip-text text-transparent  bg-gradient-to-tr from-stone-800  via-primary to-secondary-foreground dark:bg-gradient-to-tr dark:from-stone-300  dark:via-primary dark:to-secondary-foreground">
           Your All-in-one Platform For E-Commerce . Welcome to{" "}
-          <span className=" underline dark:text-base-content text-stone-900">
+          <span className=" underline dark:text-stone-300 text-stone-900">
             {siteConfig.name}
           </span>
         </h1>
