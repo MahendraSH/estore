@@ -60,7 +60,7 @@ model Product {
   categoriesId  String    // Foreign Key to Category
   category    Category  @relation("CategoryToProduct", fields: [categoriesId], references: [id])
   name        String
-  price       Decimal
+  price       Int
   isFeatured  Boolean   @default(false)
   isArchived  Boolean   @default(false)
   sizesId      String    // Foreign Key to Size
