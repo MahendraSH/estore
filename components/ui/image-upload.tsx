@@ -24,7 +24,7 @@ const ImageUpload: FC<ImageUploadProps> = ({
     setIsMount(true);
   }, []);
 
-  const onUpload = (result: any) => {
+  const onSuccess = (result: any) => {
     onChange(result.info.secure_url);
   };
 
@@ -63,7 +63,7 @@ const ImageUpload: FC<ImageUploadProps> = ({
           </div>
         ))}
       </div>
-      <CldUploadWidget onUpload={onUpload} uploadPreset="xlt40hzr">
+      <CldUploadWidget onSuccess={onSuccess} uploadPreset="xlt40hzr">
         {({ open }) => {
           const onClick = () => {
             open();
